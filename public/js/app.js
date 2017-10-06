@@ -59238,6 +59238,8 @@ var Master = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59248,65 +59250,102 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var CreateItem = function (_React$Component) {
     _inherits(CreateItem, _React$Component);
 
-    function CreateItem() {
+    function CreateItem(props) {
         _classCallCheck(this, CreateItem);
 
-        return _possibleConstructorReturn(this, (CreateItem.__proto__ || Object.getPrototypeOf(CreateItem)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CreateItem.__proto__ || Object.getPrototypeOf(CreateItem)).call(this, props));
+
+        _this.state = {
+            producName: '',
+            productPrice: ''
+        };
+
+        _this.handleChangeItemName = _this.handleChangeItemName.bind(_this);
+        _this.handleChangeItemPrice = _this.handleChangeItemPrice.bind(_this);
+        _this.handleAddData = _this.handleAddData.bind(_this);
+        return _this;
     }
 
     _createClass(CreateItem, [{
-        key: "render",
+        key: 'handleChangeItemName',
+        value: function handleChangeItemName(e) {
+            this.setState({ producName: e.target.value });
+        }
+    }, {
+        key: 'handleChangeItemPrice',
+        value: function handleChangeItemPrice(e) {
+            this.setState({ productPrice: e.target.value });
+        }
+    }, {
+        key: 'handleAddData',
+        value: function handleAddData(e) {
+            e.preventDefault();
+            var product = {
+                name: this.state.producName,
+                price: this.state.productPrice
+            };
+
+            var uri = "/api/test";
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(uri, product).then(function (res) {
+                console.log(res);
+            });
+        }
+    }, {
+        key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
+                'div',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "h1",
+                    'h1',
                     null,
-                    "Create  Item  "
+                    'Create  Item  '
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "form",
+                    'form',
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        { className: "row" },
+                        'div',
+                        { className: 'row' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "div",
-                            { className: "col-md-6" },
+                            'div',
+                            { className: 'col-md-6' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "label",
+                                'label',
                                 null,
-                                "Item Name "
+                                'Item Name '
                             ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control" })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: this.handleChangeItemName, className: 'form-control' })
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        { className: "row" },
+                        'div',
+                        { className: 'row' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "div",
-                            { className: "col-md-6" },
+                            'div',
+                            { className: 'col-md-6' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "label",
+                                'label',
                                 null,
-                                "Item Price: "
+                                'Item Price: '
                             ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control" })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text',
+                                onChange: this.handleChangeItemPrice,
+                                className: 'form-control' })
                         )
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        { className: "form-group" },
+                        'div',
+                        { className: 'form-group' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "button",
-                            { className: "btn btn-primary" },
-                            "Add Iten "
+                            'button',
+                            { className: 'btn btn-primary', onClick: this.handleAddData },
+                            'Add Iten '
                         )
                     )
                 )

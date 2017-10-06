@@ -18,3 +18,7 @@
 Route::get('{reactRoutes}', function () {
     return view('welcome'); // your start view
 })->where('reactRoutes', '^((?!api).)*$'); // except 'api' word
+
+//Route::post('api/test' , "ItemController@save");
+
+Route::resource('api/test', 'ItemController');
