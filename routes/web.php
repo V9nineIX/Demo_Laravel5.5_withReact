@@ -21,4 +21,6 @@ Route::get('{reactRoutes}', function () {
 
 //Route::post('api/test' , "ItemController@save");
 
-Route::resource('api/test', 'ItemController');
+Route::resource('api/item', 'ItemController');
+
+Route::get('api/find-item/{id}' ,'ItemController@findItem');

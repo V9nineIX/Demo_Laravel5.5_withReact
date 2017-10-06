@@ -17,18 +17,23 @@ require('./bootstrap');
 
 import React from  'react';
 import ReactDOM from 'react-dom';
-import { Router , Route , browserHistory } from 'react-router';
+import { Router , Route ,IndexRoute, browserHistory } from 'react-router';
 //import Example from  './components/Example';
 import Master from './components/Master';
-import CreateItem from './components/CreateItem';
+import FormItem from './components/FormItem';
+import DisplayItems  from './components/DisplayItems';
 
 
 
 if (document.getElementById('root')) {
     ReactDOM.render( 
             <Router history={browserHistory}>
+ 
                 <Route path="/" component={Master} >
-                    <Route path="/create" component={CreateItem} />
+                  <IndexRoute component={DisplayItems}/>
+                    <Route path="/create" component={FormItem} />
+                    <Route path="/dispaly" component={DisplayItems} />
+                    <Route path="/edit/:itemId" component={FormItem} />
                 </Route>
             </Router>
         ,document.getElementById('root'));
